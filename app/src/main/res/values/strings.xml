@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">SequenceCounter</string>
+    <string name="target_sequence_input_hint">Target sequence</string>
+    <string name="corpus_input_hint">Corpus to search</string>
 </resources>

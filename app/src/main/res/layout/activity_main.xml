@@ -1,18 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingLeft="@dimen/content_padding"
+    android:paddingRight="@dimen/content_padding"
     tools:context="com.example.cmathew.sequencecounter.MainActivity">
 
-    <TextView
+    <EditText
+        android:id="@+id/corpus_entry"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/corpus_input_hint"
+        android:text="abcabc"/>
+
+    <EditText
+        android:id="@+id/sequence_entry"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/target_sequence_input_hint"
+        android:text="abc"/>
+
+    <Button
+        android:id="@+id/check_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:text="check"/>
 
-</android.support.constraint.ConstraintLayout>
+    <TextView
+        android:id="@+id/match_counter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Match Count: 0"/>
+
+</LinearLayout>
