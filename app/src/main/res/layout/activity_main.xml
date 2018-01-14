@@ -13,15 +13,13 @@
         android:id="@+id/corpus_entry"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/corpus_input_hint"
-        android:text="abcabc"/>
+        android:hint="@string/corpus_input_hint" />
 
     <EditText
         android:id="@+id/sequence_entry"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/target_sequence_input_hint"
-        android:text="abc"/>
+        android:hint="@string/target_sequence_input_hint" />
 
     <Button
         android:id="@+id/check_button"
