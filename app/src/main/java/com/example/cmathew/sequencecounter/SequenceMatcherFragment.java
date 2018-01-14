@@ -1,6 +1,7 @@
 package com.example.cmathew.sequencecounter;
 
 import android.os.Bundle;
+import android.support.annotation.MainThread;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,19 +11,26 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.jakewharton.rxbinding.widget.RxTextView;
+import com.trello.rxlifecycle.android.FragmentEvent;
+import com.trello.rxlifecycle.components.support.RxFragment;
+
+import java.util.concurrent.TimeUnit;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
+import rx.Observable;
+import rx.Scheduler;
+import rx.Subscriber;
+import rx.android.schedulers.AndroidSchedulers;
 
-public class SequenceMatcherFragment extends Fragment {
+public class SequenceMatcherFragment extends RxFragment {
     @BindView(R.id.corpus_entry)
     EditText corpusEntry;
 
     @BindView(R.id.sequence_entry)
     EditText sequenceEntry;
-
-    @BindView(R.id.check_button)
-    Button checkButton;
 
     @BindView(R.id.match_counter)
     TextView matchCounter;
@@ -44,25 +52,33 @@ public class SequenceMatcherFragment extends Fragment {
 
         unbinder = ButterKnife.bind(this, view);
 
-        checkButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String bodyString = corpusEntry.getText().toString();
-                if (bodyString.isEmpty()) {
-                    Toast.makeText(getActivity(), R.string.missing_corpus_error, Toast.LENGTH_SHORT).show();
-                    return;
-                }
+        Observable<CharSequence> corpusChanges = RxTextView.textChanges(corpusEntry);
+        Observable<CharSequence> sequenceChanges = RxTextView.textChanges(sequenceEntry);
 
-                String sequenceString = sequenceEntry.getText().toString();
-                if (sequenceString.isEmpty()) {
-                    Toast.makeText(getActivity(), R.string.missing_sequence_error, Toast.LENGTH_SHORT).show();
-                    return;
-                }
+        Observable.merge(corpusChanges, sequenceChanges)
+                .debounce(100, TimeUnit.MILLISECONDS)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(AndroidSchedulers.mainThread())
+                .compose(this.<CharSequence>bindUntilEvent(FragmentEvent.DESTROY_VIEW))
+                .subscribe(new Subscriber<CharSequence>() {
+                    @Override
+                    public void onCompleted() {
 
-                int matchCount = SequenceMatcher.FindMatches(bodyString, sequenceString);
-                matchCounter.setText(String.format("Matches: %d", matchCount));
-            }
-        });
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onNext(CharSequence charSequence) {
+                        String bodyString = corpusEntry.getText().toString();
+                        String sequenceString = sequenceEntry.getText().toString();
+                        int matchCount = SequenceMatcher.FindMatches(bodyString, sequenceString);
+                        matchCounter.setText(String.format("Matches: %d", matchCount));
+                    }
+                });
 
         return view;
     }
