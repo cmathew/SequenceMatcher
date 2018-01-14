@@ -26,16 +26,12 @@ public class MainActivityTest {
         onView(withId(R.id.corpus_entry)).perform(replaceText("abc"), closeSoftKeyboard());
         onView(withId(R.id.sequence_entry)).perform(replaceText("abc"), closeSoftKeyboard());
 
-        onView(withId(R.id.check_button)).perform(click());
-
         onView(withId(R.id.match_counter)).check(matches(withText("Matches: 1")));
     }
 
     @Test @Ignore
     public void noBodyError() {
         onView(withId(R.id.sequence_entry)).perform(replaceText("abc"), closeSoftKeyboard());
-
-        onView(withId(R.id.check_button)).perform(click());
 
         ToastMatcher isToast = new ToastMatcher();
         onView(withText(R.string.missing_corpus_error)).inRoot(isToast).check(matches(isDisplayed()));
@@ -44,8 +40,6 @@ public class MainActivityTest {
     @Test @Ignore
     public void noSequenceError() {
         onView(withId(R.id.corpus_entry)).perform(replaceText("abc"), closeSoftKeyboard());
-
-        onView(withId(R.id.check_button)).perform(click());
 
         ToastMatcher isToast = new ToastMatcher();
         onView(withText(R.string.missing_sequence_error)).inRoot(isToast).check(matches(isDisplayed()));

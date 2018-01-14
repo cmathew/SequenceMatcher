@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
+        <item android:id="@+id/sequence_navigation"
+            android:checked="true"
+            android:title="@string/sequence_navigation_title" />
+    </group>
+</menu>

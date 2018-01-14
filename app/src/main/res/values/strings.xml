@@ -1,11 +1,14 @@
 <resources>
     <string name="app_name">SequenceCounter</string>
+
+    <string name="open">Open</string>
+    <string name="close">Close</string>
+
     <string name="target_sequence_input_hint">Target sequence</string>
     <string name="corpus_input_hint">Corpus to search</string>
 
     <string name="missing_corpus_error">Please enter a string to search within.</string>
     <string name="missing_sequence_error">Please enter a sequence to search for.</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="sequence_navigation_title">Sequence Matcher</string>
 </resources>
