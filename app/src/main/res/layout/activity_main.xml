@@ -1,36 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:paddingLeft="@dimen/content_padding"
     android:paddingRight="@dimen/content_padding"
     tools:context="com.example.cmathew.sequencecounter.MainActivity">
 
-    <EditText
-        android:id="@+id/corpus_entry"
+    <fragment
+        android:id="@+id/content_container"
+        android:name="com.example.cmathew.sequencecounter.SequenceMatcherFragment"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/corpus_input_hint" />
+        android:layout_height="match_parent"/>
 
-    <EditText
-        android:id="@+id/sequence_entry"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/target_sequence_input_hint" />
-
-    <Button
-        android:id="@+id/check_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="check"/>
-
-    <TextView
-        android:id="@+id/match_counter"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Match Count: 0"/>
-
-</LinearLayout>
+</FrameLayout>

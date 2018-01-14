@@ -1,0 +1,38 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:context="com.example.cmathew.sequencecounter.SequenceMatcherFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/corpus_entry"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/corpus_input_hint" />
+
+        <EditText
+            android:id="@+id/sequence_entry"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/target_sequence_input_hint" />
+
+        <Button
+            android:id="@+id/check_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="check"/>
+
+        <TextView
+            android:id="@+id/match_counter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Match Count: 0"/>
+
+    </LinearLayout>
+
+</FrameLayout>
